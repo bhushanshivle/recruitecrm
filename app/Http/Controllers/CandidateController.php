@@ -102,7 +102,10 @@ class CandidateController extends Controller
                
                 $objCandidate->specialization = $request->input('specialization');
                 $objCandidate->work_ex_year = $request->input('work_ex_year');
-                $objCandidate->candidate_dob = $request->input('candidate_dob');
+
+                if( false !== strtotime($request->input('candidate_dob')) ) {
+                    $objCandidate->candidate_dob = strtotime($request->input('candidate_dob'));
+                }
                 $objCandidate->address = $request->input('address');
 
                 if( 'male' == strtolower( $objCandidate->gender = $request->input('gender') ) ) {
